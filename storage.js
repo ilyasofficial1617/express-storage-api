@@ -43,7 +43,7 @@ getList = (pathname = "") => {
 
 initMount = () => {
   if (!isExist(storagePath)) {
-    fs.mkdirSync(storagePath);
+    fs.mkdirSync(storagePath, { recursive: true });
   }
 };
 
@@ -57,7 +57,7 @@ mkdirIfNotExist = (pathname) => {
   }
 
   // if folder doesn't exist then create it
-  fs.mkdirSync(pathname);
+  fs.mkdirSync(pathname, { recursive: true });
 };
 
 isExist = (pathname = "") => {
