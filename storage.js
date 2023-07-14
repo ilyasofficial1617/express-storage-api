@@ -47,6 +47,19 @@ initMount = () => {
   }
 };
 
+mkdirIfNotExist = (pathname) => {
+  // if  same name already exist
+  if (isExist(pathname)) {
+    // if same name and its folder
+    if (!isFile(pathname)) {
+      return;
+    }
+  }
+
+  // if folder doesn't exist then create it
+  fs.mkdirSync(pathname);
+};
+
 isExist = (pathname = "") => {
   if (fs.existsSync(pathname)) {
     return true;
@@ -60,4 +73,9 @@ isFile = (pathname = "") => {
   return filestat.isFile();
 };
 
-module.exports = { get: get, initMount: initMount };
+module.exports = {
+  get: get,
+  initMount: initMount,
+  storagePath: storagePath,
+  mkdirIfNotExist: mkdirIfNotExist,
+};
