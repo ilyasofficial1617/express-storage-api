@@ -5,9 +5,20 @@ const port = process.env.PORT ? process.env.PORT : 3000;
 const storage = require("./storage");
 storage.initMount();
 
-app.get("/", (req, res) => {
-  storageList = storage.getList();
-  res.send(storageList);
+app.get("/files/*", (req, res) => {
+  pathname = req.params["0"];
+  pathInfo = storage.get(pathname);
+  if (pathInfo == undefined) {
+    // if path invalid
+    res.sendStatus(404);
+  }
+  if (pathInfo.isFile) {
+    // download file
+    res.download(pathInfo.serverPath);
+  } else {
+    // get folder listing
+    res.send(pathInfo);
+  }
 });
 
 app.listen(port, () => {
