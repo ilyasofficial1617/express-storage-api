@@ -7,7 +7,13 @@ getList = () => {
   if (!isExist(storage_path)) {
     return [];
   }
-  return fs.readdirSync(storage_path);
+
+  fs_data = fs.readdirSync(storage_path, { withFileTypes: true });
+  listing = fs_data.map((dirent) => ({
+    name: dirent.name,
+    isFile: dirent.isFile(),
+  }));
+  return listing;
 };
 
 initMount = () => {
