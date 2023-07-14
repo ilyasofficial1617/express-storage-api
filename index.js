@@ -10,7 +10,7 @@ app.get("/files/*", (req, res) => {
   pathInfo = storage.get(pathname);
   if (pathInfo == undefined) {
     // if path invalid
-    res.sendStatus(404);
+    return res.sendStatus(404);
   }
   if (pathInfo.isFile) {
     // download file
