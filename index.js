@@ -1,8 +1,14 @@
 require("dotenv").config();
 const path = require("path");
 const express = require("express");
+const cors = require("cors");
+
 const app = express();
 const port = 3000;
+
+// Cors allow
+app.use(cors());
+
 // Mount storage
 const storage = require("./storage");
 storage.initMount();
