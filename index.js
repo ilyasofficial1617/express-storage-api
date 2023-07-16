@@ -2,7 +2,7 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const app = express();
-const port = process.env.PORT ? process.env.PORT : 3000;
+const port = 3000;
 // Mount storage
 const storage = require("./storage");
 storage.initMount();
@@ -42,5 +42,5 @@ app.get("/files/*", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("server started on port " + port);
+  console.log("express-storage-api started on port " + port);
 });
